@@ -32,10 +32,12 @@ each key-value pair in data2 is also
 a list [key, value] of length 2.
 '''
 
+
 def uniqueUpdate(data1, data2):
     # Initially empty dictionary
     dupKeys = {}
-
+    
+    
     # Examine every (k, v2) pair in data2
     for [k, v2] in data2:
         # Check if there is a key-value
@@ -112,3 +114,57 @@ if __name__ == '__main__':
     print(data1)
     print(data2)
     print(dup)
+
+   #Answers: 
+#5A) We identify an input on the function...
+      #Input: 
+      #3
+      #1    2
+      #2    2
+      #8    7
+      #2
+      #3    3
+      #4    4
+      #Basically, when the key does not exist in Data 1, then the key_value pair is not added to it. 
+  
+#5B) After the modification we get:
+      # Examine every (k, v2) pair in data2
+    for [k, v2] in data2:
+        # Check if there is a key-value
+        # pair with key = k in data1
+        if k in data1:
+            v1 = data1[k]
+            # (k, v1) in dict1
+            # Check if v1 != v2
+            if v1 != v2:
+                # Add (k, [v1, v2])
+                # to dictionary                
+                dupKeys[k] = [v1, v2]
+                # Remove (k, v1) from data1
+                del data1[k]
+            else:
+                # Add (k, v2) to data1
+                data1[k] = v2
+           else: 
+                data1[k] = data1.get(k, v2)
+            #We just ignore the rest of the code, and we do not modify it at all. 
+                
+     #5C)   Case 1: 
+            #4
+            #1   2
+            #3   3 
+            #3   8
+            #4   9
+            #2
+            #3   3
+            #4   4
+            
+            #Case 2.
+           #4
+           #1    2
+           #2    2
+           #3    3
+           #4    19
+           #2
+           #3    3
+           #4    19
